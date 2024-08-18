@@ -21,7 +21,7 @@ def livro_list_create(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def livro_detail(request, pk):
     livro = Livro.objects.get(pk=pk)
     if request.method == 'GET':
