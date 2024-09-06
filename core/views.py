@@ -3,6 +3,7 @@ from rest_framework import status
 from .models import Livro
 from .serializers import LivroSerializer
 from rest_framework.decorators import api_view
+from django.shortcuts import get_object_or_404
 
 @api_view(['GET', 'POST'])
 def livro_list_create(request):
@@ -20,7 +21,7 @@ def livro_list_create(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def livro_detail(request, pk):
-    livro = Livro.objects.get(pk=pk)
+    livro = get_object_or_404(Livro, pk=pk)
     if request.method == 'GET':
         serializer = LivroSerializer(livro)
         return Response(serializer.data)
